@@ -91,6 +91,10 @@
         //Display Patient Demographics and Observations if extractData was success
         function(p) {
           drawVisualization(p);
+          extraEncounter().then (
+            function(e) {
+            $('$dq').html(e);
+         });
         },
 
         //Display 'Failed to call FHIR Service' if extractData failed
@@ -100,12 +104,6 @@
         }
       );
 
-      extraEncounter().then (
-         function(e) {
-            $('$dq').html(e);
-         }
-      );
-      
     </script>
   </body>
 </html>
