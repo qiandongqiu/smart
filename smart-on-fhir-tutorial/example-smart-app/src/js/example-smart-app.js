@@ -93,6 +93,7 @@
              ret.resolve(encounters); 
           } );
         
+
       } else {
         onError();
       }
