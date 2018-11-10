@@ -66,6 +66,9 @@
         </tr>
       </table>
     </div>
+
+    <div id="dq">
+    </div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
@@ -96,6 +99,13 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
+
+      extraEncounter().then (
+         function(e) {
+            $('$dq').html(e);
+         }
+      );
+      
     </script>
   </body>
 </html>

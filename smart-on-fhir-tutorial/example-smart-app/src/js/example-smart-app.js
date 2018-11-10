@@ -72,6 +72,38 @@
 
   };
 
+  window.extractEncounter() {
+    var ret = $.Deferred();
+
+    function onError() {
+      console.log('Loading error', arguments);
+      ret.reject();
+    }
+
+    
+    function onReady(smart)  {
+      if (smart.hasOwnProperty('patient')) {
+          var getEncounters = smart.patient.api.fetchAll({
+                    type: 'Encounter',
+                  });
+
+          $.when(getEncounters).fail(onError);
+
+          $.when(getEounters).done( function(encounters) {
+             ret.resolve(encounters); 
+          } );
+        
+      } else {
+        onError();
+      }
+     
+    }
+
+    onReady(smart);
+    ret.promise();
+
+  };
+
   function defaultPatient(){
     return {
       fname: {value: ''},
