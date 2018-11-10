@@ -99,7 +99,7 @@
      
     }
 
-    onReady(smart);
+    FHIR.oauth2.ready(onReady, onError);
     ret.promise();
 
   };
