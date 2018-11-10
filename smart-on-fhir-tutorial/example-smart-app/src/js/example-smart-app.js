@@ -89,7 +89,7 @@
 
           $.when(getEncounters).fail(onError);
 
-          $.when(getEounters).done( function(encounters) {
+          $.when(getEncounters).done( function(encounters) {
              ret.resolve(encounters); 
           } );
         
