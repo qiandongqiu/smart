@@ -72,7 +72,7 @@
 
   };
 
-  window.extractEncounter= function() {
+  window.extractEncounter = function() {
     var ret = $.Deferred();
 
     function onError() {
