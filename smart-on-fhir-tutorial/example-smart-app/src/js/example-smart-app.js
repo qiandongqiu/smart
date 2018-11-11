@@ -73,15 +73,15 @@
   };
 
   window.extractEncounter = function() {
-    var ret = $.Deferred();
+    var retEncounter = $.Deferred();
 
     function onError() {
       console.log('Loading error', arguments);
-      ret.reject();
+      retEncounter.reject();
     }
 
     
-    function onReady(smart)  {
+    function onEncounterReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
           var getEncounters = smart.patient.api.fetchAll({
                     type: 'Encounter',
@@ -90,7 +90,7 @@
           $.when(getEncounters).fail(onError);
 
           $.when(getEncounters).done( function(encounters) {
-             ret.resolve(encounters); 
+             retEncounter.resolve(encounters); 
           } );
         
 
@@ -100,8 +100,8 @@
      
     }
 
-    FHIR.oauth2.ready(onReady, onError);
-    ret.promise();
+    FHIR.oauth2.ready(onEncounterReady, onError);
+    return retEncounter.promise();
 
   };
 
