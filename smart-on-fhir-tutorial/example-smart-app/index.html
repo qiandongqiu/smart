@@ -106,7 +106,7 @@
             extractEncounter().then (
              function(data) {
                if(data) {
-                      for ( var i=0; i< data.entry.length; i++) {
+                      for ( var i=0; i< data.length; i++) {
                           var en = data[i];
                           var row = "<li> " + en.text.div + "</li>";
                           $("#encounter_list").append(row);
