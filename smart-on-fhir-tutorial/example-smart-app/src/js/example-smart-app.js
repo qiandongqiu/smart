@@ -84,7 +84,7 @@
     function onEncounterReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
           var getEncounters = smart.patient.api.fetchAll({
-                    type: 'Appointment',  //'Schedule',   //Encounter
+                    type: 'Encounter'  //'Appointment',  //'Schedule',   //Encounter
                   });
 
           $.when(getEncounters).fail(onError);
@@ -104,6 +104,41 @@
     return retEncounter.promise();
 
   };
+
+  window.extractAppointment = function() {
+    var retAppt = $.Deferred();
+
+    function onError() {
+      console.log('Loading error', arguments);
+      retAppt.reject();
+    }
+
+
+    function onAppointmentReady(smart)  {
+      if (smart.hasOwnProperty('patient')) {
+          var getAppointments = smart.patient.api.fetchAll({
+                    type: 'Appointment',   //,  //'Schedule',   //Encounter
+                    date: '2018'
+                  });
+
+          $.when(getAppointments).fail(onError);
+
+          $.when(getAppointments).done( function(appointments) {
+             retAppt.resolve(appointments);
+          } );
+
+
+      } else {
+        onError();
+      }
+
+    }
+
+    FHIR.oauth2.ready(onAppointmentReady, onError);
+    return retAppt.promise();
+
+  };
+
 
   function defaultPatient(){
     return {
