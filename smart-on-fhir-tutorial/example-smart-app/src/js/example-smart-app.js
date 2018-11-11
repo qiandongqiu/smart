@@ -116,9 +116,10 @@
 
     function onAppointmentReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
+          var patient = smart.patient;
           var getAppointments = smart.patient.api.fetchAll({
                     type: 'Appointment',   //,  //'Schedule',   //Encounter
-                    query: { date: '2018' }
+                    query: { date: '2018', patient: patient.id }
                   });
 
           $.when(getAppointments).fail(onError);
