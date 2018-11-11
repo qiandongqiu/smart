@@ -67,7 +67,7 @@
       </table>
     </div>
 
-    <id="encounter">
+    <div id="encounter">
       click here to get encounter
     </div>
     <ul id="encounter_list"></ul>
@@ -108,7 +108,7 @@
                e.entry.forEach(function(re) {
                       //$('#encounter').html(e);
                       var en = re.resource;
-                      var row = $("<li> " + en.text.div + "</li>");
+                      var row = "<li> " + en.text.div + "</li>";
                       $("#encounter_list").append(row);
                });
              });
