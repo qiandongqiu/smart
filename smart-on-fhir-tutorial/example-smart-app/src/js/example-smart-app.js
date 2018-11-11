@@ -84,7 +84,7 @@
     function onEncounterReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
           var getEncounters = smart.patient.api.fetchAll({
-                    type: 'Schedule',   //Encounter
+                    type: 'Appointment',  //'Schedule',   //Encounter
                   });
 
           $.when(getEncounters).fail(onError);
