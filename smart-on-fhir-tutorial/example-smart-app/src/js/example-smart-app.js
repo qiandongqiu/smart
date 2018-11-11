@@ -118,7 +118,7 @@
       if (smart.hasOwnProperty('patient')) {
           var getAppointments = smart.patient.api.fetchAll({
                     type: 'Appointment',   //,  //'Schedule',   //Encounter
-                    date: '2018'
+                    query: { date: '2018' }
                   });
 
           $.when(getAppointments).fail(onError);
