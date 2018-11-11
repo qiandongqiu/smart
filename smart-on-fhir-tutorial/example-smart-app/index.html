@@ -67,7 +67,8 @@
       </table>
     </div>
 
-    <div id="dq">
+    <div id="encounter">
+      click here to get encounter
     </div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
@@ -99,6 +100,13 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
+
+       $("#encounter").click(funciton() {
+            extractEncounter().then (
+             function(e) {
+               $('#encounter').html(e);
+             });
+        });
 
 /*
           extractEncounter().then (
