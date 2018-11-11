@@ -104,13 +104,14 @@
 
        $("#encounter").click(function() {
             extractEncounter().then (
-             function(e) {
-               e.entry.forEach(function(re) {
-                      //$('#encounter').html(e);
-                      var en = re.resource;
-                      var row = "<li> " + en.text.div + "</li>";
-                      $("#encounter_list").append(row);
-               });
+             function(data) {
+               if(data.entry) {
+                      for ( var i=0; i< data.entry.length; i++) {
+                          var en = re.resource;
+                          var row = "<li> " + en.text.div + "</li>";
+                          $("#encounter_list").append(row);
+                      }
+               }
              });
         });
 
