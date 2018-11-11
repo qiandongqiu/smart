@@ -67,9 +67,10 @@
       </table>
     </div>
 
-    <div id="encounter">
+    <id="encounter">
       click here to get encounter
     </div>
+    <ul id="encounter_list"></ul>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
@@ -104,17 +105,14 @@
        $("#encounter").click(function() {
             extractEncounter().then (
              function(e) {
-               $('#encounter').html(e);
+               e.entry.forEach(function(re) {
+                      //$('#encounter').html(e);
+                      var en = re.resource;
+                      var row = $("<li> " + en.text.div + "</li>");
+                      $("#med_list").append(row);
+               });
              });
         });
-
-/*
-          extractEncounter().then (
-            function(e) {
-               $('#dq').html(e);
-            });
-*/
-
 
     </script>
   </body>
