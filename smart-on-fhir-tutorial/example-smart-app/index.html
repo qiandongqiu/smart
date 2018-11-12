@@ -78,6 +78,11 @@
     <ul id="appointment_list"></ul>
 
 
+    <div id="schedule">
+      click here to get schedule (not related to patient)
+    </div>
+    <ul id="schedule_list"></ul>
+
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
@@ -134,6 +139,23 @@
                }
              });
         });
+
+
+      $("#schedule").click(function() {
+            extractSchedule().then (
+             function(data) {
+               if(data) {
+                      $("#schedule_list").append(data.text.div);
+                      for ( var i=0; i< data.length; i++) {
+                          var en = data[i];
+                          var row = "<li> " + en.text.div + "</li>";
+                          $("#schedule_list").append(row);
+                      }
+               }
+             });
+        });
+
+
 
 
     </script>

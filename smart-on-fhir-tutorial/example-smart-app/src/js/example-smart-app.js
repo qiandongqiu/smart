@@ -141,6 +141,43 @@
   };
 
 
+
+window.extractSchedule = function() {
+    var retSchedule = $.Deferred();
+
+    function onError() {
+      console.log('Loading error', arguments);
+      retSchedule.reject();
+    }
+
+
+    function onScheduleReady(smart)  {
+      if (smart.hasOwnProperty('patient')) {
+          var patient = smart.patient;
+          var getAppointments = smart.api.fetchAll({
+                    type: 'Schedule',   //,  //'Schedule',   //Encounter
+                    query: { _id: '1265426-633867-3121665-0,21265426-633867-3121665-15'}
+                  });
+
+          $.when(getSchedule).fail(onError);
+
+          $.when(getAppointments).done( function(schedules) {
+             retSchedule.resolve(schedules);
+          } );
+
+
+      } else {
+        onError();
+      }
+
+    }
+
+    FHIR.oauth2.ready(onScheduleReady, onError);
+    return retSchedule.promise();
+
+}
+
+
   function defaultPatient(){
     return {
       fname: {value: ''},
