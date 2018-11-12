@@ -161,7 +161,7 @@ window.extractSchedule = function() {
 
           $.when(getSchedules).fail(onError);
 
-          $.when(getAppointments).done( function(schedules) {
+          $.when(getSchedules).done( function(schedules) {
              retSchedule.resolve(schedules);
           } );
 
