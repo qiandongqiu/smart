@@ -154,12 +154,12 @@ window.extractSchedule = function() {
     function onScheduleReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
           var patient = smart.patient;
-          var getAppointments = smart.api.fetchAll({
+          var getSchedules = smart.api.fetchAll({
                     type: 'Schedule',   //,  //'Schedule',   //Encounter
                     query: { _id: '1265426-633867-3121665-0,21265426-633867-3121665-15'}
                   });
 
-          $.when(getSchedule).fail(onError);
+          $.when(getSchedules).fail(onError);
 
           $.when(getAppointments).done( function(schedules) {
              retSchedule.resolve(schedules);
