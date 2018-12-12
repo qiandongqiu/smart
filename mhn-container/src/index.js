@@ -15,7 +15,7 @@ class EncounterTab extends React.Component {
        super(props);
        this.state = {
            isLoaded: false,
-           encounters: {}
+           encounters: []
        };
     }
 
@@ -50,13 +50,34 @@ class EncounterTab extends React.Component {
   }
 
   startToGetEncounter() {
-       window.FHIR.oauth2.ready(this.onEncounterReady.bind(this), this.onError.bind(this))
+       window.FHIR.oauth2.ready(this.onEncounterReady.bind(this), this.onError.bind(this));
   }
- 
+
+
   render() {
-      return (
-         <div onClick={()=>this.startToGetEncounter()}> Encounters: { this.state.encounters.length } </div>
-      );
+      var encounters = this.state.encounters;
+      console.log("8888");
+      console.log(encounters.length);
+
+      if(encounters.length==0) {
+        return (
+           <div>
+              <div onClick={()=>this.startToGetEncounter()}> Encounters: { this.state.encounters.length } </div>
+           </div>
+        );
+      } else {
+         console.log("9999");
+         console.log(encounters[0]);
+         console.log(encounters[0].text);
+         console.log(encounters[0].text.div);
+
+         return (
+           <div>
+              <div onClick={()=>this.startToGetEncounter()}> Encounters: { this.state.encounters.length } </div>
+              { encounters.map(encounter => <div> {encounter.location[0].location.display} </div>) }
+           </div>
+         );
+      }
   }
 
 }
