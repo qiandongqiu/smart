@@ -1,165 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-    <title>MHN Smart App</title>
-
-    <link rel='stylesheet' type='text/css' href='./src/css/mhn-smart-container.css'>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
     <!--
-      Temporarily disable cerner-smart-embeddable-lib
-      <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
+          crossorigin="anonymous">
+
+    <!-- Main Stylesheet File -->
+    <link href="src/css/style.css" rel="stylesheet">
+
+    <title>MHN Smart App</title>
   </head>
   <body>
-    <div id='errors'>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
+   <header id="header" class="header header-hide">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto">MHN SmartApp</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="patient">Patient</a></li>
+          <li><a href="app1">App1</a></li>
+          <li><a href="app2">App2</a></li>
+          <li><a href="encounter">Encounter</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
     </div>
-    <div id="loading" class="spinner">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-    <div id='holder' >
-      <h2>MHN Smart App</h2>
+  </header><!-- #header -->
 
-      <h2>Patient Resource</h2>
-      <table>
-        <tr>
-          <th>First Name:</th>
-          <td id='fname'></td>
-        </tr>
-        <tr>
-          <th>Last Name:</th>
-          <td id='lname'></td>
-        </tr>
-        <tr>
-          <th>Gender:</th>
-          <td id='gender'></td>
-        </tr>
-        <tr>
-          <th>Date of Birth:</th>
-          <td id='birthdate'></td>
-        </tr>
-      </table>
-      <h2>Observation Resource</h2>
-      <table>
-        <tr>
-          <th>Height:</th>
-          <td id='height'></td>
-        </tr>
-        <tr>
-          <th>Systolic Blood Pressure:</th>
-          <td id='systolicbp'></td>
-
-        </tr>
-        <tr>
-          <th>Diastolic Blood Pressure:</th>
-          <td id='diastolicbp'></td>
-        </tr>
-        <tr>
-          <th>LDL:</th>
-          <td id='ldl'></td>
-        </tr>
-        <tr>
-          <th>HDL:</th>
-          <td id='hdl'></td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="encounter">
-      click here to get encounter
-    </div>
-    <ul id="encounter_list"></ul>
-
-    <div id="appointment">
-      click here to get appointments
-    </div>
-    <ul id="appointment_list"></ul>
-
-
-    <div id="schedule">
-      click here to get schedule (not related to patient)
-    </div>
-    <ul id="schedule_list"></ul>
-
-    <!-- Required JS files to enable this page to embed within an MPage -->
-    <!--
-      Temporarily disable cerner-smart-embeddable-lib
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js'></script>
-      <script src='./lib/js/cerner-smart-embeddable-lib-1.0.0.min.js'></script>
-    -->
-
-    <!-- Application-level javascript-->
-    <script src='./src/js/example-smart-app.js'></script>
-
-    <!-- FHIR Client JS Library -->
+     <!-- FHIR Client JS Library -->
     <script src='./lib/js/fhir-client-v0.1.12.js'></script>
 
     <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
     <!-- https://github.com/cerner/fhir-client-cerner-additions -->
     <script src='./lib/js/fhir-client-cerner-additions-1.0.0.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-      extractData().then(
-        //Display Patient Demographics and Observations if extractData was success
-        function(p) {
-          drawVisualization(p);
-        },
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        //Display 'Failed to call FHIR Service' if extractData failed
-        function() {
-          $('#loading').hide();
-          $('#errors').html('<p> Failed to call FHIR Service </p>');
-        }
-      );
+    <div>&nbsp;</div>
 
-       $("#encounter").click(function() {
-            extractEncounter().then (
-             function(data) {
-               if(data) {
-                      for ( var i=0; i< data.length; i++) {
-                          var en = data[i];
-                          var row = "<li> " + en.text.div + "</li>";
-                          $("#encounter_list").append(row);
-                      }
-               }
-             });
-        });
+    <div>
+       <div class="mhn_content" id="patient">Patient information</div>
+       <div class="mhn_content" id="app1">app1 information</div>
+       <div class="mhn_content" id="app2">app2 information</div>
+       <div class="mhn_content" id="encounter"> encounter information </div>
+    </div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-       $("#appointment").click(function() {
-            extractAppointment().then (
-             function(data) {
-               if(data) {
-                      for ( var i=0; i< data.length; i++) {
-                          var en = data[i];
-                          var row = "<li> " + en.text.div + "</li>";
-                          $("#appointment_list").append(row);
-                      }
-               }
-             });
-        });
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
 
-      $("#schedule").click(function() {
-
-            extractSchedule().then (
-             function(data) {
-               if(data) {
-                      for ( var i=0; i< data.length; i++) {
-                          var en = data[i];
-                          var row = "<li> " + en.text.div + "</li>";
-                          $("#schedule_list").append(row);
-                      }
-               }
-             });
-        });
-
-
-
-
+     <script>
+       $(".nav-menu a").on('click',function(e) {
+        e.preventDefault(); // stops link from loading
+        $('.mhn_content').hide(); // hides all content divs
+        console.log("switch to:" +'#' + $(this).attr('href'))
+        $('#' + $(this).attr('href')).show(); //get the href and use it find which div to show
+       });
     </script>
 
-   <div id="mhn_root">MHN ROOT...</div>
   </body>
 </html>

@@ -24,7 +24,6 @@ class EncounterTab extends React.Component {
     }
 
     onEncounterReady(smart) {
-      var currentEncounters = this.state.encounters;
       if (smart.hasOwnProperty('patient')) {
           var getEncounters = smart.patient.api.fetchAll({
                     type: 'Encounter'  //'Appointment',  //'Schedule',   //Encounter
@@ -59,7 +58,7 @@ class EncounterTab extends React.Component {
       console.log("8888");
       console.log(encounters.length);
 
-      if(encounters.length==0) {
+      if(encounters.length===0) {
         return (
            <div>
               <div onClick={()=>this.startToGetEncounter()}> Encounters: { this.state.encounters.length } </div>
@@ -84,4 +83,4 @@ class EncounterTab extends React.Component {
 
 
 //ReactDOM.render(<HelloWorld value='hello dq' />, document.getElementById("mhn_root"));
-ReactDOM.render(<EncounterTab />, document.getElementById("mhn_root"));
+ReactDOM.render(<EncounterTab />, document.getElementById("encounter"));
