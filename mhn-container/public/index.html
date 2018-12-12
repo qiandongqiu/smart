@@ -39,7 +39,7 @@
       <div id="logo" class="pull-left">
         <h1><a href="#body" class="scrollto">MHN SmartApp</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+        <!-- a href="#body"><img src="img/MHN_logo.png" width=150 alt="" title="" /></a -->
       </div>
 
       <nav id="nav-menu-container">
@@ -83,6 +83,9 @@
      <script>
        $(".nav-menu a").on('click',function(e) {
         e.preventDefault(); // stops link from loading
+        $(".nav-menu li").removeClass("menu-active");
+        e.target.parentElement.className += "menu-active";
+
         $('.mhn_content').hide(); // hides all content divs
         console.log("switch to:" +'#' + $(this).attr('href'))
         $('#' + $(this).attr('href')).show(); //get the href and use it find which div to show
