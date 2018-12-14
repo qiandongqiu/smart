@@ -87,12 +87,16 @@
         e.target.parentElement.className += "menu-active";
 
         $('.mhn_content').hide(); // hides all content divs
-        console.log("switch to:" +'#' + $(this).attr('href'))
-        $('#' + $(this).attr('href')).show(); //get the href and use it find which div to show
+        let appName = $(this).attr('href');
+        console.log("switch to:" +'#' + appName)
+        $('#' + appName).show(); //get the href and use it find which div to show
+        mhnApplicationMain.startApp(appName);
        });
 
        $('.mhn_content').hide(); // hides all content divs
     </script>
+
+    <div id="application_main"></div>
 
   </body>
 </html>
