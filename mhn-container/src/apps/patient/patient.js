@@ -77,11 +77,29 @@ export default class PatientApp extends React.Component {
          }
       } else {
          if(pat !== null) {
-             var fname = pat.name[0].given.join(' ');
-             var lname = pat.name[0].family.join(' '); 
+             const fname = pat.name[0].given.join(' ');
+             const lname = pat.name[0].family.join(' '); 
+             const gender = pat.gender;
+             const birthdate = pat.birthDate;
              return (
                <div className="patient_app_container">
-                   <div>{fname} {lname}</div>
+                   <div>
+                       <table>
+                          <tr>  
+                            <th> First Name: </th>
+                            <td> {fname} </td>
+                          </tr>
+                          <tr>  
+                            <th> Last Name: </th>
+                            <td> {lname} </td>
+                          </tr>
+                          <tr>  
+                            <th> Birth Date : </th>
+                            <td> {birthdate} </td>
+                          </tr>
+                
+                       </table>
+                   </div>
                </div>
              );
          } else {
