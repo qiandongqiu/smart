@@ -1,0 +1,13 @@
+div {
+   padding-left: 30px;
+}
+
+div.patient_app_container {
+   padding: 30px;
+   width: 90%;
+   height: 600px;
+   border: 2px solid red;
+   padding: 120px,20px,20px,20px;
+   margin: 20px;
+   text-align: center
+}
