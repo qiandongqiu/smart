@@ -1,0 +1,9 @@
+1) to run it locally:
+   npm start
+2) to build it:
+   npm run build
+   then ftp all files under build directory to azure wwwroot directory.
+3) to test it with cerner sandbox:
+   log into https://code.cerner.com
+   then launch your app from there.
+   
